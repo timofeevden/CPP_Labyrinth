@@ -1,0 +1,130 @@
+bool ModelMaze::findNewDirection(int &i, int &j, std::vector<std::vector<int>>& field, Direction &direction, int condition) {
+    bool new_way_found = false;
+
+
+    if (direction == UP) {
+       new_way_found = findDirectionInCell(i, j, field, direction, condition, 1);
+    } else if (direction == RIGHT) {
+        new_way_found = findDirectionInCell(i, j, field, direction, condition, 2);
+    } else if (direction == DOWN) {
+       new_way_found = findDirectionInCell(i, j, field, direction, condition, 3);
+    } else if (direction == LEFT) {
+        new_way_found = findDirectionInCell(i, j, field, direction, condition, 4);
+    }
+
+
+
+
+
+
+
+
+/*
+
+    if (direction == UP) {
+        if (isItWall(i, j, LEFT) == false) {
+            if (field[i][j - 1] == condition) {
+               direction = LEFT;
+               return true;
+            }
+        } else {    //  есть стена слева
+            if (isItWall(i, j, UP) == false) {
+                if (field[i - 1][j] == condition) {
+                    direction = UP;
+                    return true;
+                }
+            } else if (isItWall(i, j, RIGHT) == false) {
+               if (field[i][j + 1] == condition) {
+                    direction = RIGHT;
+                    return true;
+               }
+            } else if (isItWall(i, j, DOWN) == false){
+                if (field[i + 1][j] == condition) {
+                direction = DOWN;
+                return true;
+                }
+            }
+        }
+    } else if (direction == DOWN) {
+        if (isItWall(i, j, RIGHT) == false) {
+            if (field[i][j + 1] == condition) {
+           direction = RIGHT;
+           return true;
+            }
+        } else {        //  есть стена спарва
+            if (isItWall(i, j, DOWN) == false) {
+                if (field[i + 1][j] == condition) {
+                direction = DOWN;
+                return true;
+                }
+            } else if (isItWall(i, j, LEFT) == false) {
+                if (field[i][j - 1] == condition) {
+                direction = LEFT;
+                return true;
+                }
+            } else if (isItWall(i, j, UP) == false) {
+                if (field[i - 1][j] == condition) {
+                direction = UP;
+                return true;
+                }
+            }
+        }
+    } else if (direction == LEFT) {
+        if (isItWall(i, j, DOWN) == false) {
+            if (field[i + 1][j] == condition) {
+           direction = DOWN;
+           return true;
+            }
+        } else {        //  есть стена снизу
+            if (isItWall(i, j, LEFT) == false) {
+                if (field[i][j - 1] == condition) {
+                direction = LEFT;
+                return true;
+                }
+            } else if (isItWall(i, j, UP) == false) {
+                if (field[i - 1][j] == condition) {
+                direction = UP;
+                return true;
+                }
+            } else if (isItWall(i, j, RIGHT) == false) {
+                if (field[i][j + 1] == condition) {
+                direction = RIGHT;
+                return true;
+                }
+            }
+        }
+    } else if (direction == RIGHT) {
+        if (isItWall(i, j, UP) == false) {
+            if (field[i - 1][j] == condition) {
+           direction = UP;
+           return true;
+            }
+        } else {        //  есть стена сверху
+            if (isItWall(i, j, RIGHT) == false) {
+                if (field[i][j + 1] == condition) {
+                direction = RIGHT;
+                return true;
+                }
+            } else if (isItWall(i, j, DOWN) == false) {
+                if (field[i + 1][j] == condition) {
+                direction = DOWN;
+                return true;
+                }
+            } else if (isItWall(i, j, LEFT) == false) {
+                if (field[i][j - 1] == condition) {
+                direction = LEFT;
+                return true;
+                }
+            }
+        }
+    }
+    */
+
+    // если новых тропинок не найдено, то идем обратно туда, где прошли всего лишь 1 раз, где были 2 раза - не идем
+    if  (new_way_found == false && condition == 0) {
+        new_way_found = findNewDirection(i, j, field, direction, 1);
+    }
+
+    return new_way_found;
+    //  !! ПЕРЕДЕЛАТЬ !!
+}
